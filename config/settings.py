@@ -81,8 +81,12 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": config("PG_ENGINE"),
+        "NAME": config("PG_NAME"),
+        "USER": config("PG_USER"),
+        "PASSWORD": config("PG_PASSWORD"),
+        "HOST": config("PG_HOST"),
+        "PORT": config("PG_PORT"),
     }
 }
 
@@ -141,12 +145,11 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
 
-
-EMAIL_USE_TLS = True
-EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = config("EMAIL_USE_TLS", cast=bool, default=True)
+EMAIL_HOST = config("EMAIL_HOST")
 EMAIL_HOST_USER = config("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
-EMAIL_PORT = 587
+EMAIL_PORT = config("EMAIL_PORT")
 
 DJOSER = {
     "ACTIVATION_URL": "activate/{uid}/{token}",
