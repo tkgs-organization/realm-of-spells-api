@@ -9,7 +9,7 @@ schema_view = get_schema_view(
     openapi.Info(
         title="Realm of Spells API",
         default_version='v1',
-        url="http://localhost:8000/api/v1/",
+        url="http://127.0.0.1:8000/api/",
         description="API documentation for Realm of Spells",
     ),
     public=True,
@@ -19,5 +19,5 @@ schema_view = get_schema_view(
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('api/docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path("api/", include("authentication.urls")),
+    path("api/auth/", include("authentication.urls")),
 ]
