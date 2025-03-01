@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "rest_framework_swagger",
+    "rest_framework_simplejwt.token_blacklist",
     'djoser',
     "drf_yasg",
     "authentication",
@@ -148,6 +149,8 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
 }
 
 EMAIL_USE_TLS = config("EMAIL_USE_TLS", cast=bool, default=True)
